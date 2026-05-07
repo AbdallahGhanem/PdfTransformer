@@ -52,6 +52,8 @@ namespace PdfToExcelWithWatermark
 
         enum RowKind { Empty, Title, Section, SubSection, ColumnHeader, Data }
 
+        const string ProtectionPassword = "GulfUnion@2026";
+
         static void ConvertPdfToExcel(string pdfPath, string excelPath)
         {
             if (File.Exists(excelPath)) File.Delete(excelPath);
@@ -354,7 +356,8 @@ namespace PdfToExcelWithWatermark
             var titleFill = XLColor.FromHtml("#1F4E79");
             var sectionFill = XLColor.FromHtml("#2E75B6");
             var subSectionFill = XLColor.FromHtml("#BDD7EE");
-            var columnHeaderFill = XLColor.FromHtml("#D9D9D9");
+            var columnHeaderFill = XLColor.FromHtml("#4472C4");
+            var columnHeaderFont = XLColor.White;
             var labelFill = XLColor.FromHtml("#F2F2F2");
             var borderColor = XLColor.FromHtml("#BFBFBF");
 
@@ -401,12 +404,12 @@ namespace PdfToExcelWithWatermark
 
                     case RowKind.ColumnHeader:
                         rowRange.Style.Fill.BackgroundColor = columnHeaderFill;
+                        rowRange.Style.Font.FontColor = columnHeaderFont;
                         rowRange.Style.Font.Bold = true;
                         rowRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         rowRange.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-                        for (int c = 0; c < row.Count; c++)
-                            if (row[c]?.IsMultiLine == true)
-                                sheet.Cell(r + 1, c + 1).Style.Alignment.WrapText = true;
+                        rowRange.Style.Alignment.WrapText = true;
+                        sheet.Row(r + 1).Height = 36;
                         break;
 
                     case RowKind.Data:
@@ -457,9 +460,12 @@ namespace PdfToExcelWithWatermark
 
             foreach (var sheet in workbook.Worksheets)
             {
-                sheet.Cell(1, 1).Value = "";
-                sheet.Protect();
+                var protection = sheet.Protect(ProtectionPassword);
+                protection.AllowedElements = XLSheetProtectionElements.SelectLockedCells
+                                           | XLSheetProtectionElements.SelectUnlockedCells;
             }
+
+            workbook.Protect(ProtectionPassword);
 
             if (File.Exists(outputExcel)) File.Delete(outputExcel);
             workbook.SaveAs(outputExcel);
