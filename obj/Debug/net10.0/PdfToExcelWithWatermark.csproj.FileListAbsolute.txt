@@ -33,3 +33,4 @@ G:\StudyProjects\PdfToExcelWithWatermark\bin\Debug\net10.0\UglyToad.PdfPig.dll
 G:\StudyProjects\PdfToExcelWithWatermark\bin\Debug\net10.0\RBush.dll
 G:\StudyProjects\PdfToExcelWithWatermark\bin\Debug\net10.0\SixLabors.Fonts.dll
 G:\StudyProjects\PdfToExcelWithWatermark\bin\Debug\net10.0\System.IO.Packaging.dll
+G:\StudyProjects\PdfToExcelWithWatermark\obj\Debug\net10.0\PdfToExcelWithWatermark.sourcelink.json

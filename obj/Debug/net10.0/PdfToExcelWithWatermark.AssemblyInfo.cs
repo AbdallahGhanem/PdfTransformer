@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PdfToExcelWithWatermark")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+411c607000b4656c77b5695b3d21fa47e7a2d5bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("PdfToExcelWithWatermark")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PdfToExcelWithWatermark")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
